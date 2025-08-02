@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 static int sumRec(int *arr, size_t arrLen)
 { 
@@ -74,9 +76,8 @@ void reverse(int *arr, size_t arrLen){
     if(arrLen < 2)
         return;
     int temp;
-    int shift = arrLen - 1;
+    int shift = arrLen - 1; 
     int mid = arrLen / 2;
-    printf("mid: %d, arrLen: %ld, shift: %d\n", mid, arrLen, shift);
     for(int i=0; i < mid; i++){
        temp = arr[i];
        arr[i] = arr[i+shift];
@@ -110,15 +111,22 @@ int main(int argc, char *argv[])
   //swap(&a,&b);
   //printf("after swap\n");
   //printf("a: %p -> %d\nb: %p -> %d\n", &a, a, &b, b);
+  int arr2[20] = {};
+  srand(time(NULL)); // use current time as seed for random generator
+  for(int i=0; i < 20; i++){
+      arr2[i] = rand();
+  }
+  
+  arrLen = sizeof(arr2) / sizeof(arr2[0]);
   for(int i=0; i < arrLen; i++){
-      printf("%p -> %d\n",&arr[i], arr[i]);
+      printf("%p -> %d\n",&arr2[i], arr2[i]);
   }
   printf("-------\n");
   printf("after reverse:\n");
   printf("-------\n");
-  reverse(arr, arrLen);
+  reverse(arr2, arrLen);
   for(int i=0; i < arrLen; i++){
-      printf("%p -> %d\n",&arr[i], arr[i]);
+      printf("%p -> %d\n",&arr2[i], arr2[i]);
   }
   return 0;
 }
